@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GX Store</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+}
+
+header{
+    background:#1e1e1e;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    color:#00ff88;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.category{
+    margin-bottom:40px;
+}
+
+.category h2{
+    margin-bottom:15px;
+    color:#00ff88;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1e1e1e;
+    padding:20px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.price{
+    color:#00ff88;
+    margin-bottom:15px;
+}
+
+.btn{
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#00ff88;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    border-radius:5px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>GX STORE</h1>
+    <p>MENJUAL BERBAGAI JASA SEPERTI JASA SAMP JASA DISCORD JASA DESIGN DAN APK PREMIUM</p>
+</header>
+
+<div class="container" id="store"></div>
+
+<script>
+
+const discordInvite = "https://discord.gg/Z4mzVEyqb";
+
+const categories = [
+{
+    name: "JASA DISCORD",
+    products: [
+        {name:"Jasa Dev Discord"}
+        {name:"Jasa Buat Discord"}
+        {name:"Jasa Set Up Bot Discord"}
+        {name:"Jasa Copy Paste Discord"}
+    ]
+},
+{
+    name: "JASA SAMP",
+    products: [
+        {name:"Jasa On Server"}
+        {name:"Jasa Samp"}
+        {name:"Jasa Pasang Bot"}
+    ]
+},
+{
+    name: "JASA DESIGN",
+    products: [
+        {name:"Buat Logo"},
+        {name:"Buat Banner"}
+    ]
+}
+];
+
+const store = document.getElementById("store");
+
+categories.forEach(category => {
+
+    const categoryDiv = document.createElement("div");
+    categoryDiv.className = "category";
+
+    let html = `
+        <h2>${category.name}</h2>
+        <div class="products">
+    `;
+
+    category.products.forEach(product => {
+        html += `
+        <div class="card">
+            <h3>${product.name}</h3>
+            <div class="price">${product.price}</div>
+            <button class="btn"
+            onclick="window.open('${discordInvite}','_blank')">
+            BELI SEKARANG
+            </button>
+        </div>
+        `;
+    });
+
+    html += `</div>`;
+    categoryDiv.innerHTML = html;
+    store.appendChild(categoryDiv);
+
+});
+
+</script>
+
+</body>
+</html>
